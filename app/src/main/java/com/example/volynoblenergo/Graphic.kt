@@ -52,7 +52,7 @@ internal fun updateAppWidget(
     c2.add(Calendar.DATE, 1)
     val c2time = c2.time
 
-    val df: SimpleDateFormat = SimpleDateFormat("dd-MM-yy", Locale.getDefault())
+    val df = SimpleDateFormat("dd-MM-yy", Locale.getDefault())
     val formattedDate: String = df.format(c)
     val formattedDate2: String = df.format(c2time)
 
@@ -61,7 +61,7 @@ internal fun updateAppWidget(
             override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                 super.onResourceReady(resource, transition)
             }
-        };
+        }
 
     Glide
         .with(context.applicationContext)
@@ -86,7 +86,7 @@ internal fun updateAppWidget(
             override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                 super.onResourceReady(resource, transition)
             }
-        };
+        }
 
     Glide
         .with(context.applicationContext)

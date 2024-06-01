@@ -43,9 +43,9 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation(libs.glide)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    annotationProcessor("com.github.bumptech.glide:compiler:4.14.2")
+    annotationProcessor(libs.compiler)
 }
