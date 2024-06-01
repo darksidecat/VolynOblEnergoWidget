@@ -5,7 +5,6 @@ import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.graphics.Bitmap
 import android.icu.util.Calendar
-import android.util.Log
 import android.widget.RemoteViews
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.AppWidgetTarget
@@ -39,6 +38,7 @@ class Graphic : AppWidgetProvider() {
     }
 }
 
+
 internal fun updateAppWidget(
     context: Context,
     appWidgetManager: AppWidgetManager,
@@ -55,32 +55,56 @@ internal fun updateAppWidget(
     val df: SimpleDateFormat = SimpleDateFormat("dd-MM-yy", Locale.getDefault())
     val formattedDate: String = df.format(c)
     val formattedDate2: String = df.format(c2time)
-    Log.i("E", formattedDate)
-    Log.i("E", formattedDate2)
 
-    val awt: AppWidgetTarget = object : AppWidgetTarget(context.applicationContext, R.id.dataChart, views, appWidgetId) {
-        override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-            super.onResourceReady(resource, transition)
-        }
-    };
+    val awt: AppWidgetTarget =
+        object : AppWidgetTarget(context.applicationContext, R.id.dataChart, views, appWidgetId) {
+            override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                super.onResourceReady(resource, transition)
+            }
+        };
 
     Glide
         .with(context.applicationContext)
         .asBitmap()
-        .load("https://energy.volyn.ua/spozhyvacham/perervy-u-elektropostachanni/hrafik-vidkliuchen/!img/$formattedDate.jpg")
+        .load("https://energy.volyn.ua/spozhyvacham/perervy-u-elektropostachanni/hrafik-vidkliuchen/!img/$formattedDate-3.jpg")
+        .error(
+            Glide.with(context.applicationContext).asBitmap()
+                .load("https://energy.volyn.ua/spozhyvacham/perervy-u-elektropostachanni/hrafik-vidkliuchen/!img/$formattedDate-2.jpg")
+                .error(
+                    Glide.with(context.applicationContext).asBitmap()
+                        .load("https://energy.volyn.ua/spozhyvacham/perervy-u-elektropostachanni/hrafik-vidkliuchen/!img/$formattedDate-1.jpg")
+                        .error(
+                            Glide.with(context.applicationContext).asBitmap()
+                                .load("https://energy.volyn.ua/spozhyvacham/perervy-u-elektropostachanni/hrafik-vidkliuchen/!img/$formattedDate.jpg")
+                        )
+                )
+        )
         .into(awt)
 
-    val awt2: AppWidgetTarget = object : AppWidgetTarget(context.applicationContext, R.id.dataChart2, views, appWidgetId) {
-        override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-            super.onResourceReady(resource, transition)
-        }
-    };
+    val awt2: AppWidgetTarget =
+        object : AppWidgetTarget(context.applicationContext, R.id.dataChart2, views, appWidgetId) {
+            override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                super.onResourceReady(resource, transition)
+            }
+        };
 
     Glide
         .with(context.applicationContext)
         .asBitmap()
-        .load("https://energy.volyn.ua/spozhyvacham/perervy-u-elektropostachanni/hrafik-vidkliuchen/!img/$formattedDate2.jpg")
+        .load("https://energy.volyn.ua/spozhyvacham/perervy-u-elektropostachanni/hrafik-vidkliuchen/!img/$formattedDate2-3.jpg")
+        .error(
+            Glide.with(context.applicationContext).asBitmap()
+                .load("https://energy.volyn.ua/spozhyvacham/perervy-u-elektropostachanni/hrafik-vidkliuchen/!img/$formattedDate2-2.jpg")
+                .error(
+                    Glide.with(context.applicationContext).asBitmap()
+                        .load("https://energy.volyn.ua/spozhyvacham/perervy-u-elektropostachanni/hrafik-vidkliuchen/!img/$formattedDate2-1.jpg")
+                        .error(
+                            Glide.with(context.applicationContext).asBitmap()
+                                .load("https://energy.volyn.ua/spozhyvacham/perervy-u-elektropostachanni/hrafik-vidkliuchen/!img/$formattedDate2.jpg")
+                        )
+                )
+        )
         .into(awt2)
-
     appWidgetManager.updateAppWidget(appWidgetId, views)
+
 }
