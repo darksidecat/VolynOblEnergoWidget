@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.volynoblenergo"
+    namespace = "com.darksidecat.volynoblenergo"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.volynoblenergo"
+        applicationId = "com.darksidecat.volynoblenergo"
         minSdk = 31
         targetSdk = 34
         versionCode = 1
